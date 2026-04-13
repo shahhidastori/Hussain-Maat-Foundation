@@ -1,0 +1,54 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.hmf.twa'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.hmf.twa"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0.0"
+
+        // TWA host URL - change this to your deployed URL
+        manifestPlaceholders = [
+            hostName: "fund-manager-app-2.preview.emergentagent.com",
+            defaultUrl: "https://fund-manager-app-2.preview.emergentagent.com",
+            launcherName: "HMF",
+            assetStatements: '[{ "relation": ["delegate_permission/common.handle_all_urls"], "target": { "namespace": "web", "site": "https://fund-manager-app-2.preview.emergentagent.com" } }]'
+        ]
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("hmf-release.keystore")
+            storePassword "hmf12345"
+            keyAlias "hmf"
+            keyPassword "hmf12345"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    implementation 'androidx.browser:browser:1.8.0'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+}

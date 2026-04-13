@@ -1,0 +1,115 @@
+{
+  "project_name": "Community Fund Manager",
+  "theme_strategy": "light",
+  "design_philosophy": {
+    "name": "E1 Organic Trust",
+    "description": "A clean, trustworthy, and community-focused design that blends Swiss minimalist clarity with warm, organic tones suitable for a Pakistani community context. It avoids the cold 'tech blue' in favor of deep emeralds and warm sands.",
+    "core_values": ["Trust", "Transparency", "Community", "Growth"]
+  },
+  "typography": {
+    "heading_font": "Manrope",
+    "body_font": "Public Sans",
+    "scale": {
+      "h1": "text-4xl font-bold tracking-tight",
+      "h2": "text-3xl font-semibold tracking-tight",
+      "h3": "text-2xl font-semibold",
+      "p": "text-base leading-relaxed text-slate-600",
+      "small": "text-sm text-slate-500"
+    }
+  },
+  "colors": {
+    "primary": {
+      "name": "Emerald Trust",
+      "hex": "#047857",
+      "tailwind": "bg-emerald-700 text-white hover:bg-emerald-800",
+      "description": "Used for primary actions, active states, and brand identity. Represents growth and Islamic finance values."
+    },
+    "secondary": {
+      "name": "Amber Wealth",
+      "hex": "#b45309",
+      "tailwind": "text-amber-700 bg-amber-50 border-amber-200",
+      "description": "Used for financial metrics, money-related highlights, and warnings."
+    },
+    "background": {
+      "main": "#f8fafc",
+      "tailwind": "bg-slate-50",
+      "card": "#ffffff",
+      "card_tailwind": "bg-white"
+    },
+    "text": {
+      "main": "#0f172a",
+      "muted": "#64748b"
+    },
+    "status": {
+      "success": "text-emerald-700 bg-emerald-50 border-emerald-200",
+      "pending": "text-amber-700 bg-amber-50 border-amber-200",
+      "rejected": "text-red-700 bg-red-50 border-red-200"
+    }
+  },
+  "layout_strategy": {
+    "dashboard": "Bento Grid (High Density)",
+    "mobile_nav": "Bottom Sticky Navigation",
+    "container": "max-w-md mx-auto md:max-w-4xl px-4 py-6",
+    "spacing": "Generous padding (p-6) for cards to allow breathing room."
+  },
+  "components": {
+    "buttons": {
+      "primary": "rounded-full bg-emerald-700 text-white hover:bg-emerald-800 shadow-lg hover:shadow-xl transition-all duration-200 font-medium px-8 py-6 h-auto",
+      "secondary": "rounded-full bg-white text-emerald-700 border-2 border-emerald-100 hover:bg-emerald-50 transition-all duration-200 font-medium px-6 py-6 h-auto",
+      "ghost": "rounded-full hover:bg-slate-100 text-slate-600 font-medium px-4 py-3"
+    },
+    "cards": {
+      "base": "bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow duration-300 p-6",
+      "stat": "flex flex-col justify-between h-full bg-white rounded-2xl border border-slate-100 shadow-sm p-6 relative overflow-hidden group hover:border-emerald-100 transition-colors"
+    },
+    "inputs": {
+      "base": "rounded-xl border-slate-200 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-100 transition-all duration-200 h-12"
+    },
+    "navigation": {
+      "bottom_bar": "fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-lg border-t border-slate-200 p-4 flex justify-around items-center z-50 md:hidden",
+      "desktop_sidebar": "hidden md:flex flex-col w-64 bg-white border-r border-slate-200 h-screen fixed left-0 top-0 p-6"
+    }
+  },
+  "image_urls": {
+    "hero_community": "https://images.unsplash.com/photo-1617080090911-91409e3496ad",
+    "category_education": "https://images.unsplash.com/photo-1567057420215-0afa9aa9253a",
+    "category_health": "https://images.unsplash.com/photo-1612943733919-f9661f1331f5",
+    "category_emergency": "https://images.unsplash.com/photo-1599700403969-f77b3aa74837",
+    "category_wedding": "https://images.unsplash.com/photo-1706471406061-30b7856d26c5",
+    "category_funeral": "https://images.unsplash.com/photo-1763355873417-1e0926397851"
+  },
+  "visual_enhancers": {
+    "shadows": "shadow-[0_8px_30px_rgb(0,0,0,0.04)]",
+    "gradients": "bg-gradient-to-br from-emerald-50 to-white",
+    "textures": "Grain overlay on hero sections for organic feel."
+  },
+  "motion": {
+    "hover": "transform hover:-translate-y-1 transition-transform duration-300 ease-out",
+    "click": "active:scale-95 transition-transform duration-100",
+    "page_transition": "animate-in fade-in slide-in-from-bottom-4 duration-500 ease-out"
+  },
+  "instructions_to_main_agent": [
+    "Use 'Manrope' for all headings and 'Public Sans' for body text. Import them via Google Fonts.",
+    "For the dashboard, use a 'Bento Grid' layout. The 'Total Pending Fee' should be the hero card (largest).",
+    "Implement a Mobile-First navigation bar at the bottom for easy thumb access.",
+    "Use the 'Emerald Trust' color (#047857) for primary buttons and active states.",
+    "Ensure all monetary values are formatted clearly (e.g., 'PKR 5,000').",
+    "Use the provided image URLs for the respective fund categories in the 'Fund Allocation' section.",
+    "The login screen should be extremely simple: Logo, Phone Input, PIN Input. No clutter.",
+    "Notifications must use the 'Sonner' toast library.",
+    "Adhere to the 'High Density' grid rules for the Admin Dashboard to show maximum data without scrolling."
+  ],
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "Dark colors look good when used independently without gradients. DO NOT use dark colors as gradients.",
+    "Don't make generic centered layouts, simplistic gradients, and uniform styling.",
+    "Create depth through layered design elements with z-index hierarchy.",
+    "Use glass-morphism effects with backdrop filters (12-24px blur).",
+    "You MUST NOT apply universal transition. Eg: transition: all. This results in breaking transforms. Always add transitions for specific interactive elements like button, input excluding transforms.",
+    "You MUST NOT center align the app container, ie do not add .App { text-align: center; } in the css file. This disrupts the human natural reading flow of text.",
+    "Always use modern button styles like pill-shaped, or sharp button with interaction animations & color relevant to the app style.",
+    "NEVER: use AI assistant Emoji characters for icons.",
+    "Every interaction needs micro-animations - hover states, transitions, entrance animations. Static = dead.",
+    "Use 2-3x more spacing than feels comfortable. Cramped designs look cheap.",
+    "All interactive and key informational elements MUST include a data-testid attribute."
+  ]
+}
