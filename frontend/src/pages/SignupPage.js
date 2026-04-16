@@ -78,12 +78,12 @@ export default function SignupPage() {
 
     setLoading(true);
     try {
-      await signup(phone, pin, firstName.trim(), lastName.trim());
+      const userData = await signup(phone, pin, firstName.trim(), lastName.trim());
       toast.success(t('accountCreated'));
-      navigate('/dashboard');
+      // Use window.location for a clean redirect that ensures auth state is fully loaded
+      window.location.href = '/dashboard';
     } catch (error) {
       toast.error(error.response?.data?.detail || 'Failed to create account');
-    } finally {
       setLoading(false);
     }
   };
