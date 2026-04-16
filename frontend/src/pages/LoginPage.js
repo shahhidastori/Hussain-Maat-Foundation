@@ -65,12 +65,12 @@ export default function LoginPage() {
 
     setLoading(true);
     try {
-      await login(phone, pin);
+      const userData = await login(phone, pin);
       toast.success(t('loginSuccessful'));
-      navigate('/dashboard');
+      // Use window.location for a clean redirect that ensures auth state is fully loaded
+      window.location.href = '/dashboard';
     } catch (error) {
       toast.error(error.response?.data?.detail || 'Invalid phone number or PIN');
-    } finally {
       setLoading(false);
     }
   };
