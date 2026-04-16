@@ -291,12 +291,13 @@ async def signup(data: UserCreate):
 
         new_id = uuid.uuid4()
         now = datetime.now(timezone.utc)
-        await conn.execute(
-            """INSERT INTO users (id, phone, first_name, last_name, pin_hash, role, is_disabled, created_at)
-               VALUES ($1, $2, $3, $4, $5, $6, $7, $8)""",
-            new_id, phone, sanitize_input(data.first_name), sanitize_input(data.last_name),
-            hash_pin(data.pin), "member", False, now
-        )
+        async with conn.transaction():
+            await conn.execute(
+                """INSERT INTO users (id, phone, first_name, last_name, pin_hash, role, is_disabled, created_at)
+                   VALUES ($1, $2, $3, $4, $5, $6, $7, $8)""",
+                new_id, phone, sanitize_input(data.first_name), sanitize_input(data.last_name),
+                hash_pin(data.pin), "member", False, now
+            )
 
     token = create_token(str(new_id), "member")
     return {
