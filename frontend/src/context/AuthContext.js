@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
 const AuthContext = createContext(null);
@@ -9,11 +9,18 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [loading, setLoading] = useState(true);
+  const isAuthenticating = useRef(false);
 
   useEffect(() => {
     if (token) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      fetchUser();
+      // Skip fetchUser if login/signup already set the user directly
+      if (!isAuthenticating.current) {
+        fetchUser();
+      } else {
+        isAuthenticating.current = false;
+        setLoading(false);
+      }
     } else {
       setLoading(false);
     }
@@ -36,8 +43,9 @@ export function AuthProvider({ children }) {
     const { token: newToken, user: userData } = response.data;
     localStorage.setItem('token', newToken);
     axios.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
-    setToken(newToken);
+    isAuthenticating.current = true;
     setUser(userData);
+    setToken(newToken);
     return userData;
   };
 
@@ -51,8 +59,9 @@ export function AuthProvider({ children }) {
     const { token: newToken, user: userData } = response.data;
     localStorage.setItem('token', newToken);
     axios.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
-    setToken(newToken);
+    isAuthenticating.current = true;
     setUser(userData);
+    setToken(newToken);
     return userData;
   };
 
